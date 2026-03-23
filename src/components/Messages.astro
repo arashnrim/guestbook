@@ -1,0 +1,32 @@
+---
+import Message from "./Message.astro";
+---
+
+<section id="messages" class="container">
+  <Message />
+  <Message />
+  <Message />
+  <Message />
+</section>
+
+<style>
+  #messages {
+    background:
+      radial-gradient(#1f1f1f, 2.5px, transparent 3px) 0 0 / 50px 50px,
+      linear-gradient(to bottom, #0a0a0a, transparent 500%);
+    display: grid;
+    gap: 1.5em;
+  }
+
+  @media screen and (min-width: 1024px) {
+    #messages {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 1536px) {
+    #messages {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

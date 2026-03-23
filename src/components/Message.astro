@@ -1,0 +1,56 @@
+<div class="message">
+  <div class="message__info">
+    <div class="message__person">
+      <h2>Test</h2>
+      <a href="https://google.com" target="_blank" rel="noopener noreferrer">
+        Website
+      </a>
+    </div>
+    <div class="message__date">
+      <p>2023-10-01</p>
+    </div>
+  </div>
+  <div class="message__content">
+    <p>This is a test message.</p>
+  </div>
+  <div class="message__response">
+    <h3>Arash's reply</h3>
+    <p>This is a test response to the message.</p>
+  </div>
+</div>
+
+<style>
+  .message {
+    padding: 2em;
+    background-color: #0a0a0a;
+    border: 3px solid #1f1f1f;
+    border-radius: var(--radius);
+  }
+
+  .message__info {
+    display: flex;
+  }
+
+  .message__person {
+    flex-grow: 1;
+  }
+
+  .message__person > *,
+  .message__response > * {
+    margin: 0;
+  }
+
+  .message__person > a {
+    font-size: calc(0.6 * var(--body));
+  }
+
+  .message__response {
+    padding: 1em;
+    border: 1px solid #1f1f1f;
+    border-radius: var(--input-radius);
+  }
+
+  .message__response > h3 {
+    font-size: unset;
+  }
+</style>

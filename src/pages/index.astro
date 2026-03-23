@@ -1,8 +1,12 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/Hero.astro";
+import Messages from "@components/Messages.astro";
 
 export const prerender = false;
 ---
 
-<BaseLayout><Hero /></BaseLayout>
+<BaseLayout>
+  <Hero />
+  <Messages />
+</BaseLayout>
