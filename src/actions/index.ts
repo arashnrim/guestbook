@@ -1,8 +1,9 @@
 import { db } from "@db/index";
-import { messagesTable } from "@db/schema";
+import { messagesTable, type Message } from "@db/schema";
 import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
 import { sql } from "drizzle-orm";
+import { notifyWebhook } from "./webhook";
 
 export const server = {
   sendMessage: defineAction({
@@ -16,6 +17,7 @@ export const server = {
     handler: async (input) => {
       try {
         await db.insert(messagesTable).values(input);
+        await notifyWebhook(input as Message);
         return { success: true };
       } catch (error) {
         console.error("Failed to insert message:", error);
@@ -26,6 +28,7 @@ export const server = {
       }
     },
   }),
+
   getMessages: defineAction({
     handler: async () => {
       const messages = await db
