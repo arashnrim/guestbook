@@ -4,7 +4,6 @@ import type { Message as MessageType } from "@db/schema";
 import { actions } from "astro:actions";
 
 const { data, error } = await Astro.callAction(actions.getMessages, {});
-console.log(data, error);
 ---
 
 <section id="messages" class="container">

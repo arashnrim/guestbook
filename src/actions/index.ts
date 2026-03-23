@@ -22,13 +22,8 @@ export const server = {
         message: sanitize(v.message),
       })),
     handler: async (input) => {
-      const message = {
-        ...input,
-        date: new Date().toISOString(),
-      };
-
       try {
-        await db.insert(messagesTable).values(message);
+        await db.insert(messagesTable).values(input);
         return { success: true };
       } catch (error) {
         console.error("Failed to insert message:", error);
@@ -46,7 +41,6 @@ export const server = {
         .from(messagesTable)
         .where(sql`${messagesTable.approved} = 1`);
 
-      console.log("Approved messages:", messages);
       return messages;
     },
   }),
