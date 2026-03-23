@@ -1,26 +1,18 @@
-import { db } from "@db/index.ts";
+import { db } from "@db/index";
 import { messagesTable } from "@db/schema";
 import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
 import { sql } from "drizzle-orm";
-import { sanitize } from "isomorphic-dompurify";
 
 export const server = {
   sendMessage: defineAction({
     accept: "form",
-    input: z
-      .object({
-        name: z.string(),
-        link: z.string().optional(),
-        source: z.string().optional(),
-        message: z.string(),
-      })
-      .transform((v) => ({
-        name: sanitize(v.name),
-        link: v.link ? sanitize(v.link) : undefined,
-        source: v.source ? sanitize(v.source) : undefined,
-        message: sanitize(v.message),
-      })),
+    input: z.object({
+      name: z.string(),
+      link: z.string().optional(),
+      source: z.string().optional(),
+      message: z.string(),
+    }),
     handler: async (input) => {
       try {
         await db.insert(messagesTable).values(input);

@@ -1,10 +1,7 @@
+import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { sql } from "drizzle-orm";
-import { text, int, sqliteTable } from "drizzle-orm/sqlite-core";
 
-const table =
-  process.env.NODE_ENV === "production" ? "messages_prod" : "messages_dev";
-
-export const messagesTable = sqliteTable(table, {
+export const messagesTable = sqliteTable("messages", {
   id: int().primaryKey({ autoIncrement: true }),
   name: text().notNull(),
   link: text(),
