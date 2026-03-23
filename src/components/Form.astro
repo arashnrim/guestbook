@@ -1,0 +1,119 @@
+---
+import { actions } from "astro:actions";
+---
+
+<form id="hero__form" action={actions.sendMessage} method="POST">
+  <fieldset>
+    <legend>About you</legend>
+    <div class="form-group">
+      <label for="name">What's your name?</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Your name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="link">Have a website or social media link?</label>
+      <input
+        type="text"
+        id="link"
+        name="link"
+        placeholder="https://your-website.com"
+      />
+    </div>
+    <div class="form-group">
+      <label for="source">How did you land here?</label>
+      <select name="source" id="source">
+        <option value="website">Main website (arash.codes)</option>
+        <option value="blog">Blog (blog.arash.codes)</option>
+        <option value="garden">Digital garden (garden.arash.codes)</option>
+        <option value="social"
+          >Word of mouth (e.g. social media, friends)</option
+        >
+        <option value="exploring">Exploring the interwebs!</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+  </fieldset>
+
+  <div class="form-group">
+    <label for="message">What's your message?</label>
+    <textarea
+      id="message"
+      name="message"
+      placeholder="Your message"
+      rows="5"
+      required></textarea>
+  </div>
+
+  <button type="submit">Up and away!</button>
+</form>
+
+<style>
+  #hero__form {
+    border: 3px solid #1f1f1f;
+    padding: 2em;
+    border-radius: var(--radius);
+  }
+
+  #hero__form > *:not(:last-child) {
+    margin-bottom: 1em;
+  }
+
+  fieldset {
+    border: 3px solid #1f1f1f;
+    border-radius: var(--input-radius);
+  }
+
+  legend {
+    padding: 0 0.5em;
+  }
+
+  input,
+  textarea,
+  select {
+    background-color: transparent;
+    border: 1px solid #1f1f1f;
+    border-radius: var(--input-radius);
+    padding: 0.5em;
+    color: #ffffff;
+    transition: border 0.2s ease-in-out;
+  }
+
+  input:hover,
+  textarea:hover,
+  select:hover {
+    border: 1px solid #333;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border: 1px solid #333;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  button {
+    background: transparent;
+    font-size: unset;
+    cursor: pointer;
+    padding: 0.25em 0.75em;
+    border: 3px solid #1f1f1f;
+    border-radius: 0.3em;
+    transition: background-color 0.2s ease-out;
+  }
+
+  button:hover {
+    background-color: #0f0f0f;
+  }
+</style>
