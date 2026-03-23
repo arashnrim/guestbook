@@ -49,6 +49,8 @@ import { actions } from "astro:actions";
       required></textarea>
   </div>
 
+  <input type="text" id="potofhoney" name="potofhoney" />
+
   <button type="submit">Up and away!</button>
 </form>
 
@@ -61,6 +63,10 @@ import { actions } from "astro:actions";
 
   #hero__form > *:not(:last-child) {
     margin-bottom: 1em;
+  }
+
+  #potofhoney {
+    display: none;
   }
 
   fieldset {
