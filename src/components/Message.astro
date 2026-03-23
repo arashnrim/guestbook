@@ -1,22 +1,46 @@
+---
+import type { Message } from "@db/schema";
+
+interface Props {
+  message: Message;
+}
+
+const { message } = Astro.props;
+---
+
 <div class="message">
   <div class="message__info">
     <div class="message__person">
-      <h2>Test</h2>
-      <a href="https://google.com" target="_blank" rel="noopener noreferrer">
-        Website
-      </a>
+      <h2>{message.name}</h2>
+      {
+        message.link && (
+          <a href={message.link} target="_blank" rel="noopener noreferrer">
+            Website
+          </a>
+        )
+      }
     </div>
-    <div class="message__date">
-      <p>2023-10-01</p>
-    </div>
+    <p class="message__date">
+      {
+        new Date(message.date).toLocaleDateString("en-SG", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        })
+      }
+    </p>
   </div>
   <div class="message__content">
-    <p>This is a test message.</p>
+    <p>{message.message}</p>
   </div>
-  <div class="message__response">
-    <h3>Arash's reply</h3>
-    <p>This is a test response to the message.</p>
-  </div>
+  {
+    message.response && (
+      <div class="message__response">
+        <h3>Arash's reply</h3>
+        <p>{message.response}</p>
+      </div>
+    )
+  }
 </div>
 
 <style>
@@ -52,5 +76,11 @@
 
   .message__response > h3 {
     font-size: unset;
+  }
+
+  .message__date {
+    margin: 0;
+    align-self: center;
+    text-align: right;
   }
 </style>

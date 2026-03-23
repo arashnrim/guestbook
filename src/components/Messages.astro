@@ -1,12 +1,14 @@
 ---
 import Message from "./Message.astro";
+import type { Message as MessageType } from "@db/schema";
+import { actions } from "astro:actions";
+
+const { data, error } = await Astro.callAction(actions.getMessages, {});
+console.log(data, error);
 ---
 
 <section id="messages" class="container">
-  <Message />
-  <Message />
-  <Message />
-  <Message />
+  {data && data.map((message) => <Message message={message as MessageType} />)}
 </section>
 
 <style>

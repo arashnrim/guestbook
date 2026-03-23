@@ -2,8 +2,14 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/Hero.astro";
 import Messages from "@components/Messages.astro";
+import { actions } from "astro:actions";
 
 export const prerender = false;
+
+const result = Astro.getActionResult(actions.sendMessage);
+if (result) {
+  return Astro.redirect(Astro.originPathname);
+}
 ---
 
 <BaseLayout>
