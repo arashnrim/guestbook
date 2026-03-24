@@ -23,7 +23,6 @@ export const server = {
         console.error("Failed to insert message:", error);
         throw new ActionError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Could not save your message. Please try again.",
         });
       }
     },

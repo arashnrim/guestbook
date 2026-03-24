@@ -7,8 +7,10 @@ import { actions } from "astro:actions";
 export const prerender = false;
 
 const result = Astro.getActionResult(actions.sendMessage);
-if (result) {
-  return Astro.redirect(Astro.originPathname);
+if (result?.data) {
+  return Astro.redirect(`${Astro.originPathname}?success=true`);
+} else if (result?.error) {
+  return Astro.redirect(`${Astro.originPathname}?error=true`);
 }
 ---
 
