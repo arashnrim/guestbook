@@ -15,16 +15,18 @@ const isSuccess = Astro.url.searchParams.get("success") === "true";
         id="name"
         name="name"
         placeholder="Your name"
+        maxlength="100"
         required
       />
     </div>
     <div class="form-group">
       <label for="link">Have a website or social media link?</label>
       <input
-        type="text"
+        type="url"
         id="link"
         name="link"
         placeholder="https://your-website.com"
+        maxlength="500"
       />
     </div>
     <div class="form-group">
@@ -49,6 +51,7 @@ const isSuccess = Astro.url.searchParams.get("success") === "true";
       name="message"
       placeholder="Your message"
       rows="5"
+      maxlength="5000"
       required></textarea>
   </div>
 

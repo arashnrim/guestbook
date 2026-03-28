@@ -4,10 +4,21 @@ import type { Message as MessageType } from "@db/schema";
 import { actions } from "astro:actions";
 
 const { data, error } = await Astro.callAction(actions.getMessages, {});
+const getTimestamp = (date: string | null) => {
+  if (date === null) return 0;
+  return new Date(date).getTime();
+};
+const sortedMessages = [...(data ?? [])].sort(
+  (a, b) => getTimestamp(b.date) - getTimestamp(a.date),
+);
 ---
 
 <section id="messages" class="container">
-  {data && data.map((message) => <Message message={message as MessageType} />)}
+  {
+    sortedMessages.map((message) => (
+      <Message message={message as MessageType} />
+    ))
+  }
 </section>
 
 <style>

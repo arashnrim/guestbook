@@ -7,12 +7,25 @@ export const notifyWebhook = async (message: Message) => {
     );
   }
 
-  await fetch(process.env.WEBHOOK_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Token": process.env.WEBHOOK_TOKEN,
-    },
-    body: JSON.stringify(message),
-  });
+  try {
+    const response = await fetch(process.env.WEBHOOK_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Token": process.env.WEBHOOK_TOKEN,
+      },
+      body: JSON.stringify(message),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Webhook returned ${response.status}: ${errorText}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error("Webhook notification failed:", errorMessage);
+    throw error; // Re-throw for caller to handle
+  }
 };
