@@ -12,14 +12,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^10.0.2",
-    "@libsql/client": "^0.17.2",
-    "astro": "^6.0.8",
-    "dotenv": "^17.3.1",
-    "drizzle-orm": "^0.45.1"
+    "@astrojs/vercel": "11.0.17",
+    "@libsql/client": "^0.17.4",
+    "astro": "7.4.4",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.4"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.10",
-    "tsx": "^4.21.0"
+    "drizzle-kit": "^0.31.11",
+    "tsx": "^4.23.15"
   }
 }
