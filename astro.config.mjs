@@ -1,5 +1,12 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
+import { loadEnv } from "vite";
+
+const { VERCEL_BYPASS_TOKEN } = loadEnv(
+  process.env.NODE_ENV || "",
+  process.cwd(),
+  "",
+);
 
 import vercel from "@astrojs/vercel";
 
@@ -46,5 +53,10 @@ export default defineConfig({
     },
   ],
   compressHTML: true,
-  adapter: vercel(),
+  adapter: vercel({
+    isr: {
+      expiration: 60 * 60,
+      bypassToken: VERCEL_BYPASS_TOKEN,
+    },
+  }),
 });
