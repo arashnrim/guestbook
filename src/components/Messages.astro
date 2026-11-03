@@ -28,6 +28,8 @@ const sortedMessages = [...(data ?? [])].sort(
       linear-gradient(to bottom, #0a0a0a, transparent 500%);
     display: grid;
     gap: 1.5em;
+    padding-left: calc(var(--section-padding) / 2);
+    padding-right: calc(var(--section-padding) / 2);
   }
 
   @media screen and (min-width: 1024px) {

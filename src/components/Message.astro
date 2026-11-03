@@ -15,7 +15,7 @@ const { message } = Astro.props;
       {
         message.link && (
           <a href={message.link} target="_blank" rel="noopener noreferrer">
-            Website
+            Visit website
           </a>
         )
       }
@@ -53,10 +53,17 @@ const { message } = Astro.props;
 
   .message__info {
     display: flex;
+    flex-direction: column;
   }
 
   .message__person {
     flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .message__date {
+    display: block;
   }
 
   .message__person > *,
@@ -66,6 +73,10 @@ const { message } = Astro.props;
 
   .message__person > a {
     font-size: calc(0.6 * var(--body));
+  }
+
+  .message__person > h2 {
+    flex-grow: 1;
   }
 
   .message__response {
@@ -80,7 +91,16 @@ const { message } = Astro.props;
 
   .message__date {
     margin: 0;
-    align-self: center;
-    text-align: right;
+  }
+
+  @media screen and (min-width: 768px) {
+    .message__info {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .message__person {
+      display: block;
+    }
   }
 </style>
